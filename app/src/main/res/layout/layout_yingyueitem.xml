@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/iv_photo2"
+        android:src="@drawable/bb"
+
+        android:layout_marginTop="20dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        />
+    <TextView
+        android:id="@+id/tv_name1"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:layout_toRightOf="@id/iv_photo2"
+        android:paddingLeft="20dp"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:text="ggg"
+        />
+    <TextView
+        android:id="@+id/tv_title1"
+
+        android:textSize="24sp"
+        android:textColor="#f70f160e"
+        android:layout_toRightOf="@id/tv_name1"
+        android:layout_marginLeft="25dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/gggg"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:text="ggg"
+        />
+    <TextView
+        android:id="@+id/tv_content1"
+        android:textSize="20sp"
+        android:paddingLeft="10dp"
+        android:textColor="#eb100707"
+        android:layout_below="@id/iv_photo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ggg"
+        />
+    <ImageView
+        android:id="@+id/iv_dianzan1"
+        android:background="@null"
+        android:layout_below="@id/tv_content1"
+        android:src="@drawable/dianzan_gray"
+        android:layout_marginLeft="220dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+    <ImageView
+        android:id="@+id/iv_pinglun1"
+        android:src="@drawable/pinglun"
+        android:layout_below="@id/tv_content1"
+        android:layout_marginLeft="285dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+    <TextView
+        android:id="@+id/tv_pinglun1"
+        android:layout_below="@id/iv_dianzan1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+
+</RelativeLayout>

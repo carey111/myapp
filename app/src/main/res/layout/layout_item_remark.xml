@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="25dp"
+        android:text="xxxx"
+        android:textColor="#5f72df"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_huifu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_toRightOf="@id/tv_username"
+        android:text="回复"
+        />
+    <TextView
+        android:id="@+id/tv_fatherusername"
+        android:layout_marginTop="25dp"
+        android:layout_toRightOf="@id/tv_huifu"
+        android:text="xxxx"
+        android:textColor="#5f72df"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_maohao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:textColor="#5f72df"
+        android:layout_toRightOf="@id/tv_fatherusername"
+        android:text=":"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_toRightOf="@id/tv_maohao"
+        android:text="xxxxxxxxxxxxxxxxxxxxxxxx"/>
+
+
+</RelativeLayout>
