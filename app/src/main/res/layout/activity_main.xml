@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.administrator.myapp.MainActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <View
+            android:id="@+id/struct"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#ff0000"
+            android:layout_marginBottom="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"/>
+
+        <FrameLayout
+            android:id="@+id/fl_content"
+            android:background="#fff"
+            android:layout_toRightOf="@id/struct"
+            android:layout_alignBottom="@id/struct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
+
+
+
+        <RadioGroup
+            android:id="@+id/rg_tab"
+            android:background="#5867f1"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <RadioButton
+                android:id="@+id/rb_home"
+                android:text="首页"
+                android:drawableTop="@drawable/radio_home_tab_selector"
+                style="@style/radiotab"/>
+
+            <RadioButton
+                android:id="@+id/rb_house"
+                android:text="租房"
+                android:drawableTop="@drawable/radio_house_tab_selector"
+                style="@style/radiotab" />
+
+            <RadioButton
+                android:id="@+id/rb_zuyouquan"
+                android:text="租友圈"
+                android:drawableTop="@drawable/radio_zuyouquan_tab_selector"
+                style="@style/radiotab" />
+
+            <RadioButton
+                android:id="@+id/rb_mine"
+                android:text="我的"
+                android:drawableTop="@drawable/radio_mine_tab_selector"
+                style="@style/radiotab"/>
+        </RadioGroup>
+
+    </RelativeLayout>
+</RelativeLayout>

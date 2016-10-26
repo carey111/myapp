@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#aba6a6"
+    tools:context="com.example.administrator.myapp.RegisterActivity">
+    <LinearLayout
+        android:id="@+id/ll_aa"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="60dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="手机号："
+            android:textSize="24sp"
+            android:id="@+id/tv_zhanghao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et_zhanghao"
+
+            android:layout_width="240dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_bb"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="80dp"
+        android:layout_below="@+id/ll_aa"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_mima"
+            android:text="密码："
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/et_mima"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_dd"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="80dp"
+        android:layout_below="@+id/ll_bb"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_nicheng"
+            android:text="昵称："
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/et_nicheng"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_ee"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="0dp"
+        android:layout_below="@+id/ll_dd"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/tv_yanzhengma"
+            android:text="获取验证码："
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/et_yanzhengma"
+
+            android:layout_width="240dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_ff"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="150dp"
+        android:layout_below="@+id/ll_ee"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/bt_zhuce"
+            android:text="注册"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/now"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bt_zhuce"
+            android:layout_toRightOf="@+id/et_yanzhengma"
+            android:gravity="center_horizontal"
+            android:visibility="gone"
+            android:text="提示信息"
+            android:textColor="#aaaaaa" />
+    </LinearLayout>
+
+</RelativeLayout>

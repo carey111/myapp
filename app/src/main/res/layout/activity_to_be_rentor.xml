@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:myapp="http://schemas.android.com/apk/res-auto"
+
+    tools:context="com.example.administrator.myapp.ToBeRentor">
+    <com.example.administrator.myapp.widget.TitleBar
+        myapp:titleBarTitle="身份认证"
+        android:id="@+id/tb_bar"
+        myapp:titleBarBackground="@drawable/navigator_bar"
+        myapp:titleBarLeftImage="@drawable/nav_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
+    <RelativeLayout
+        android:background="#ffffff"
+        android:id="@+id/rl_shimingkuang"
+        android:layout_width="match_parent"
+        android:layout_height="170dp">
+       <TextView
+           android:id="@+id/tv_title"
+           android:text="实名认证"
+           android:gravity="center_vertical"
+          android:textSize="18sp"
+           android:background="#E5E5E5"
+           android:layout_width="match_parent"
+           android:layout_height="60dp" />
+
+        <TextView
+            android:id="@+id/tv_shiming"
+            android:gravity="center_vertical"
+            android:text="真实姓名"
+            android:textSize="22sp"
+            android:layout_below="@+id/tv_title"
+            android:background="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp" />
+        <EditText
+            android:id="@+id/et_shiming"
+            android:layout_below="@+id/tv_title"
+          android:layout_toRightOf="@+id/tv_shiming"
+            android:ems="10"
+            android:hint="请输入真实姓名"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+        <TextView
+            android:text="证件信息"
+            android:gravity="center_vertical"
+            android:textSize="22sp"
+         android:id="@+id/tv_zhengjianxinxi"
+            android:layout_below="@+id/tv_shiming"
+            android:background="#E5E5E5"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_shenfenkuang"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_shenfen"
+        android:text="身份证"
+        android:gravity="center_vertical"
+        android:background="#ffffff"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp" />
+     <EditText
+         android:id="@+id/et_shenfen"
+         android:layout_toRightOf="@+id/tv_shenfen"
+         android:ems="10"
+         android:hint="填写18位有效数字"
+         android:layout_width="match_parent"
+         android:layout_height="60dp" />
+        <View
+            android:layout_below="@+id/tv_shenfen"
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="#E5E5E5"
+            />
+        <TextView
+            android:id="@+id/tv_zhengfan"
+            android:textSize="20sp"
+            android:text="身份证照片(身份证正反面)"
+            android:background="#ffffff"
+           android:layout_below="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/iv_jiahao1"
+            android:src="@drawable/jiahao"
+            android:layout_marginLeft="25dp"
+            android:layout_below="@+id/tv_zhengfan"
+            android:layout_width="100dp"
+            android:layout_height="120dp" />
+        <ImageView
+            android:layout_marginLeft="120dp"
+            android:id="@+id/iv_jiahao2"
+            android:src="@drawable/jiahao"
+            android:layout_toRightOf="@+id/iv_jiahao1"
+            android:layout_below="@+id/tv_zhengfan"
+            android:layout_width="100dp"
+            android:layout_height="120dp" />
+        <Button
+            android:id="@+id/bt_tijiao"
+            android:text="提交申请"
+            android:background="#69a8cf"
+            android:layout_below="@+id/iv_jiahao1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

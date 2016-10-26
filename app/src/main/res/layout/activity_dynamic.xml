@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:myapp="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.myapp.DynamicActivity">
+    <com.example.administrator.myapp.widget.TitleBar
+        myapp:titleBarTitle="我的动态"
+        android:id="@+id/tb_bar"
+        myapp:titleBarBackground="@drawable/navigator_bar"
+        myapp:titleBarLeftImage="@drawable/nav_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/lv_dynamicinfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+        <ImageView
+            android:id="@+id/iv_shuaxin"
+            android:src="@drawable/shuaxin"
+           android:layout_gravity="bottom"
+            android:layout_marginLeft="180dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+</LinearLayout>

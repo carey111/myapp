@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    xmlns:myapp="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.administrator.myapp.LookRecordActivity">
+    <com.example.administrator.myapp.widget.TitleBar
+        myapp:titleBarTitle="浏览记录"
+        myapp:titleBarBackground="@drawable/navigator_bar"
+        myapp:titleBarLeftImage="@drawable/ic_launcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
+</LinearLayout>

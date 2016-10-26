@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:myapp="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.administrator.myapp.ModifyInfoActivity">
+
+
+    <com.example.administrator.myapp.widget.TitleBar
+        android:id="@+id/tb_bar"
+        myapp:titleBarTitle="我的信息"
+        myapp:titleBarBackground="@drawable/navigator_bar"
+        myapp:titleBarLeftImage="@drawable/nav_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="#E5E5E5"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#ffffff"
+        android:id="@+id/rl_edit_head_image"
+        >
+
+        <TextView
+            android:id="@+id/tv_headimage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="修改头像"
+            android:layout_centerVertical="true"
+            android:paddingLeft="20dp" />
+
+        <ImageView
+            android:id="@+id/iv_head_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/emptyheadimage"
+            android:layout_toLeftOf="@+id/iv_edit_head_image"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            />
+        <ImageView
+            android:id="@+id/iv_edit_head_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="6dp"
+            android:src="@drawable/iv_editinfo"
+            />
+    </RelativeLayout>
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#F2F2F2"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#ffffff"
+        android:id="@+id/rl_edit_name"
+        >
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="昵称"
+            android:layout_centerVertical="true"
+            android:paddingLeft="20dp" />
+
+        <TextView
+            android:id="@+id/tv_real_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/iv_edit_name"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:text="李达伟"
+            />
+        <ImageView
+            android:id="@+id/iv_edit_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="6dp"
+            android:src="@drawable/iv_editinfo"
+            />
+    </RelativeLayout>
+
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#F2F2F2"
+        />
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#ffffff"
+        android:id="@+id/rl_edit_pwd"
+        >
+
+        <TextView
+            android:id="@+id/tv_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="修改密码"
+            android:layout_centerVertical="true"
+            android:paddingLeft="20dp" />
+        <TextView
+            android:id="@+id/tv_real_psd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/iv_edit_pwd"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:text="1234"
+            />
+
+        <ImageView
+            android:id="@+id/iv_edit_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="6dp"
+            android:src="@drawable/iv_editinfo"
+            />
+    </RelativeLayout>
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#F2F2F2"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#ffffff"
+        android:id="@+id/rl_edit_interest"
+        >
+
+        <TextView
+            android:id="@+id/tv_interest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="兴趣标签"
+            android:layout_centerVertical="true"
+            android:paddingLeft="20dp" />
+        <TextView
+            android:id="@+id/tv_real_interest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/iv_edit_interest"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:text="游戏"
+            />
+
+        <ImageView
+            android:id="@+id/iv_edit_interest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="6dp"
+            android:src="@drawable/iv_editinfo"
+            />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#F2F2F2"
+        />
+    <RelativeLayout
+        android:id="@+id/rl_zhuxiao"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        >
+        <Button
+            android:id="@+id/bt_zhuxiao"
+            android:background="#2578ca"
+            android:textSize="20sp"
+            android:text="注销"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+    </RelativeLayout>
+</LinearLayout>
