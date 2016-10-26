@@ -64,6 +64,11 @@
                     android:scheme="rong" />
             </intent-filter>
         </activity>
+        <activity android:name=".HaoyouActivity"></activity>
+        <activity android:name=".PersonDongtaiActivity"></activity>
+        <activity android:name=".SenddongtaiActivity"></activity>
+        <activity android:name=".YingyueActivity"></activity>
+
     </application>
 
 </manifest>
