@@ -3,38 +3,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-   <android.support.v7.widget.Toolbar
-       android:id="@+id/toolbar"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:background="#5867f1">
 
-      <Button
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:background="#fff"
-          android:textColor="#000"
-          android:text="消息"
-          android:layout_marginLeft="110dp"
-          android:id="@+id/btn_xiaoxi"
-          android:layout_alignParentTop="true"
-          android:layout_toLeftOf="@+id/btn_haoyou"
-          android:layout_toStartOf="@+id/btn_haoyou" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#5867f1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-      <Button
-          android:id="@+id/btn_haoyou"
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:textColor="#000"
-          android:layout_marginLeft="5dp"
-          android:background="@drawable/buttonstyle"
-          android:text="好友"
-          android:layout_alignParentTop="true" />
-   </android.support.v7.widget.Toolbar>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:textColor="#000"
+            android:text="消息"
+            android:layout_weight="1"
+            android:id="@+id/btn_xiaoxi" />
+            <!--<View-->
+                <!--android:layout_width="5dp"-->
+                <!--android:layout_height="5dp"-->
+                <!--android:background="#f00"-->
+                <!--android:layout_centerHorizontal="true"/>-->
+        <Button
+            android:id="@+id/btn_haoyou"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#000"
+            android:layout_weight="1"
+            android:background="@drawable/buttonstyle"
+            android:text="好友" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"/>
 
-   <FrameLayout
-       android:id="@+id/fl_xiaoxi_haoyou"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-   </FrameLayout>
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/fl_xiaoxi_haoyou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </FrameLayout>
+
+
+
+
 </LinearLayout>

@@ -43,7 +43,7 @@ public class FriendinfoActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friendinfo);
+        setContentView(R.layout.activity_friend_info);
         initData();
         btn_moredongtai = ((Button) findViewById(R.id.btn_moredongtai));
         btn_moredongtai.setOnClickListener(this);

@@ -155,7 +155,7 @@ public class prepaidFragment extends BaseFragment {
                     TextView tvZujin=viewHolder.getViewById(R.id.tv_zujin);
                     tvZujin.setText(orderDetail.getRentInfo().roomRent.toString());
                     ImageView ivPhoto=viewHolder.getViewById(R.id.iv_photo);
-                    x.image().bind(ivPhoto ,"http://10.0.2.2:8080/"+orderDetail.getRentInfo().photoImg);
+                    x.image().bind(ivPhoto ,NetUtil.url+orderDetail.getRentInfo().photoImg);
 
                 }
             };

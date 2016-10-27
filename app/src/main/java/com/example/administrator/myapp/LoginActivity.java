@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,15 +27,19 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity {
+    @InjectView(R.id.img_yonghuming)
+    ImageView imgyonghuming;
+    @InjectView(R.id.img_mima)
+    ImageView imgmima;
 
-    @InjectView(R.id.tv_zhanghao)
-    TextView tvZhanghao;
+//    @InjectView(R.id.tv_zhanghao)
+//    TextView tvZhanghao;
     @InjectView(R.id.et_zhanghao)
     EditText etZhanghao;
     @InjectView(R.id.ll_aa)
     LinearLayout llAa;
-    @InjectView(R.id.tv_mima)
-    TextView tvMima;
+//    @InjectView(R.id.tv_mima)
+//    TextView tvMima;
     @InjectView(R.id.et_mima)
     EditText etMima;
     @InjectView(R.id.ll_bb)

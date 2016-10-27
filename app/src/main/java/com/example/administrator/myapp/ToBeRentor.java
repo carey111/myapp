@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,8 +13,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.administrator.myapp.pojo.User;
 import com.example.administrator.myapp.util.NetUtil;
 import com.example.administrator.myapp.widget.TitleBar;
+import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -57,6 +60,11 @@ public class ToBeRentor extends AppCompatActivity {
     private Button bt_tijiao;
     String realName;
     String cardNum;
+    private ImageView cardZheng;
+    private ImageView cardFan;
+    User user=null;
+    String imgUrl1=null;
+    String imgUrl2=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +75,8 @@ public class ToBeRentor extends AppCompatActivity {
                 Activity.MODE_PRIVATE);
         phoneNum1 = sharedPreferences.getString("phone","");
         tv_bar = ((TitleBar) findViewById(R.id.tb_bar));
+        cardZheng = ((ImageView) findViewById(R.id.iv_jiahao1));
+        cardFan = ((ImageView) findViewById(R.id.iv_jiahao2));
         tv_bar.setLeftLayoutClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,11 +86,13 @@ public class ToBeRentor extends AppCompatActivity {
 
 
     }
+
     private void initView() {
         et_shiming = ((EditText) findViewById(R.id.et_shiming));
         et_shenfen = ((EditText) findViewById(R.id.et_shenfen));
         bt_tijiao = ((Button) findViewById(R.id.bt_tijiao));
-         realName=et_shiming.getText()+"";
+
+        realName=et_shiming.getText()+"";
         cardNum=et_shenfen.getText()+"";
 
     }
@@ -102,23 +114,59 @@ public class ToBeRentor extends AppCompatActivity {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-
             }
-
             @Override
             public void onCancelled(CancelledException cex) {
-
             }
-
             @Override
             public void onFinished() {
-
             }
         });
+    }
+    private void initData1(){
+        RequestParams requestParams=new RequestParams(NetUtil.url+"userinfoqueryservlet");
+        requestParams.addQueryStringParameter("phoneNum",phoneNum1);
+    x.http().get(requestParams, new Callback.CommonCallback<String>() {
+    @Override
+    public void onSuccess(String result) {
+        Gson gson=new Gson();
+        user=gson.fromJson(result,User.class);
+        imgUrl2=user.getCardZheng();
+        imgUrl1=user.getCardFan();
+        Log.i( "onSuccess: ", "onSuccess: "+imgUrl1);
+        Log.i( "onSuccess: ", "onSuccess: "+imgUrl2);
+        x.image().bind(cardZheng,NetUtil.url+imgUrl1);
+        x.image().bind(cardFan,NetUtil.url+imgUrl2);
+
+    }
+
+    @Override
+    public void onError(Throwable ex, boolean isOnCallback) {
+
+    }
+
+    @Override
+    public void onCancelled(CancelledException cex) {
+
+    }
+
+    @Override
+    public void onFinished() {
+
+    }
+});
+
+
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        initData1();
     }
     @OnClick(R.id.bt_tijiao)
     public void onClick() {
         initView();
         initData();
+
     }
 }

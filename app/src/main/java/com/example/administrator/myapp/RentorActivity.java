@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.administrator.myapp.pojo.RentInfo;
 
+import com.example.administrator.myapp.util.NetUtil;
 import com.example.administrator.myapp.widget.TitleBar;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -71,7 +72,7 @@ public class RentorActivity extends AppCompatActivity {
                 tv_type.setText(rentInfo.getRoomType());
                 tv_area.setText(rentInfo.getRoomArea()+"");
                 tv_zujin.setText((rentInfo.getRoomRent()).toString());
-                x.image().bind(iv_photo ,"http://10.0.2.2:8080/"+rentInfo.getPhotoImg());
+                x.image().bind(iv_photo , NetUtil.url+rentInfo.getPhotoImg());
                 return view;
             }
         };
@@ -81,7 +82,7 @@ public class RentorActivity extends AppCompatActivity {
     }
     private void getRentInfo() {
 
-        RequestParams params = new RequestParams("http://10.0.2.2:8080/myapp/rentinfoqueryservlet");
+        RequestParams params = new RequestParams(NetUtil.url+"rentinfoqueryservlet");
            x.http().get(params, new Callback.CommonCallback<String>() {
     @Override
     public void onSuccess(String result) {

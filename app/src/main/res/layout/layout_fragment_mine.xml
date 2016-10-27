@@ -24,11 +24,12 @@
             android:layout_width="130dp"
             android:layout_height="130dp" />
         <TextView
-        android:id="@+id/tv_login"
-        android:text="未登录"
+            android:id="@+id/tv_login"
+            android:text="未登录"
+            android:textColor="#000"
             android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
   <LinearLayout

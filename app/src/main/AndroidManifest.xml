@@ -17,11 +17,11 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity
             android:name=".CollectActivity"
@@ -47,7 +47,13 @@
         <activity android:name=".EditInfoActivity" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ToBeRentor" />
         <activity android:name=".FriendinfoActivity" />
@@ -68,7 +74,7 @@
         <activity android:name=".PersonDongtaiActivity"></activity>
         <activity android:name=".SenddongtaiActivity"></activity>
         <activity android:name=".YingyueActivity"></activity>
-
+<activity android:name=".SousuoActivity"></activity>
     </application>
 
 </manifest>

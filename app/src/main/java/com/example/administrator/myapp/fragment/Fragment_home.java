@@ -83,7 +83,7 @@ public class Fragment_home extends Fragment {
 
         initEvent();
 
-        getDongtailist();
+
         PictureRoll();
 
         return view;
@@ -91,8 +91,122 @@ public class Fragment_home extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+            adapter = new BaseAdapter() {
+                @Override
+                public int getCount() {
+                    return newdongtailist.size();
+                }
+                @Override
+                public Object getItem(int position) {
+                    return null;
+                }
+                @Override
+                public long getItemId(int position) {
+                    return position;
+                }
+                @Override
+                public View getView(final int position, View convertView, ViewGroup parent) {
+
+                    ViewHolder viewHolder = null;
+                    if(convertView==null) {
+                        viewHolder = new ViewHolder();
+                        convertView = View.inflate(getActivity(), R.layout.layout_item, null);
+                        viewHolder.iv_photo1= ((ImageButton) convertView.findViewById(R.id.iv_photo1));
+                        viewHolder.tv_title = ((TextView) convertView.findViewById(R.id.tv_title));
+                        viewHolder.tv_name = ((TextView) convertView.findViewById(R.id.tv_name));
+                        viewHolder.tv_content= ((TextView)  convertView.findViewById(R.id.tv_content));
+                        viewHolder.tv_remark= ((TextView)  convertView.findViewById(R.id.tv_remark));
+                        viewHolder.iv_dianzan= ((ImageView) convertView.findViewById(R.id.iv_dianzan));
+                        convertView.setTag(viewHolder);//缓存对象
+                    }else{
+                        viewHolder = (ViewHolder)convertView.getTag();
+                    }
+                    final Dongtai  dongtai = newdongtailist.get(position);
+                    viewHolder.iv_photo1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            System.out.println("xxx"+dongtai.getUser().getUserId());
+                            Intent intent = new Intent(Fragment_home.this.getActivity(), PersonDongtaiActivity.class);
+                            intent.putExtra("userId",dongtai.getUser().getUserId());
+                            startActivity(intent);
+                        }
+                    });
+
+                    viewHolder.tv_title.setText(dongtai.getTitle());
+                    viewHolder.tv_name.setText(dongtai.getUser().getUserName());
+                    viewHolder.tv_content.setText(dongtai.getContent());
+                    x.image().bind(viewHolder.iv_photo1,HttpUtils.url+dongtai.getUser().getPhotoImg());
+                    Log.i(TAG, "getView: "+HttpUtils.url+dongtai.getUser().getPhotoImg());
+
+
+                    //点赞设置点击事件
+                    final ImageView dz=viewHolder.iv_dianzan;
+                    viewHolder.iv_dianzan.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(sharedPreferences.contains(position+"")){//选中状态
+                                dz.setImageResource(R.drawable.dianzan_gray);
+//                            Integer dongtaiId= dongtai.dongtaiId;
+                                deleteDianzan((Integer)dz.getTag());
+                                Log.i("Fragment",(Integer)dz.getTag()+"");
+                                Toast.makeText(getActivity(),"取消点赞",Toast.LENGTH_SHORT).show();
+
+                                editor.remove(position+"");
+
+                            }else{
+                                dz.setImageResource(R.drawable.dianzan_blue);
+//                            Integer dongtaiId= dongtai.dongtaiId;
+                                insertDianzan((Integer)dz.getTag());
+                                Log.i("Fragment11",(Integer)dz.getTag()+"");
+                                Toast.makeText(getActivity(),"点赞成功",Toast.LENGTH_SHORT).show();
+
+                                editor.putInt(position+"",(Integer)dz.getTag());
+                            }
+                            editor.commit();
+
+                        }
+                    });
+                    viewHolder.iv_dianzan.setTag(dongtai.dongtaiId);
+                    if(sharedPreferences.contains(position+"")){
+                        dz.setImageResource(R.drawable.dianzan_blue);
+                    }else{
+                        dz.setImageResource(R.drawable.dianzan_gray);
+                    }
+
+                    if (null != dongtai.remarklist && dongtai.remarklist.size() > 0) {
+                        Log.i("Fragment_home",dongtai.remarklist+"===============");
+//                    System.out.print(dongtai.remarklist);
+                        viewHolder.tv_remark.setVisibility(View.VISIBLE);
+                        String string = "";
+                        for (Remark remark : dongtai.remarklist) {
+                            System.out.print(remark);
+                            if((remark.isEnd)==true){
+                                string +=remark.user.getUserName()+":"+ remark.remarkContent + "\n";
+                            }else if((remark.isEnd)==false){
+                                string +=remark.user.getUserName()+"回复"+remark.fatheruser.getUserName()+":"+remark.remarkContent + "\n";
+                            }
+                            viewHolder.tv_remark.setText(string);
+                        }
+
+                    } else {
+                        viewHolder.tv_remark.setVisibility(View.GONE);
+                    }
+
+
+                    return convertView;
+                }
+            };
+            lv_dtt.setAdapter(adapter);
+
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
+        getDongtailist();
     }
     @Override
     public void onResume() {
@@ -131,141 +245,29 @@ public class Fragment_home extends Fragment {
 
 
     private void getDongtailist() {
+       if(null!=newdongtailist)
+        newdongtailist.clear();
         RequestParams params=new RequestParams(HttpUtils.url+"GetDongtai");
 //        params.addQueryStringParameter("pageNo", pageNo + "");
 //        params.addQueryStringParameter("pageSize", pageSize + "");
         x.http().get(params, new Callback.CommonCallback<String>(){
             @Override
             public void onSuccess(String result) {
+
                 Gson gson = new Gson();
                 System.out.println("==="+result);
                 Type type = new TypeToken<List<Dongtai>>(){}.getType();
                 List<Dongtai> dongtaiList= gson.fromJson(result,type);
-//                if (flag) {
-//                    newdongtailist.clear();// 清空原来数据
-//                } else {
-//                    if (dongtaiList.size() == 0) {//服务器没有返回新的数据
-//                        pageNo--; //下一次继续加载这一页
-//                        Toast.makeText(getActivity(), "没有更多数据", Toast.LENGTH_SHORT).show();
-//                        lv_dtt.completeLoad();//没获取到数据也要改变界面
-//                        return;
-//                    }
-//                }
+
                 for (Dongtai dongtai : dongtaiList) {
                     System.out.println(dongtai.getContent()+"=="+dongtai.getUser().getUserId());
                 }
                 Log.e("eeeee","===================================");
 
                 newdongtailist.addAll(dongtaiList);
-                if(adapter==null){
-                    adapter = new BaseAdapter() {
-                        @Override
-                        public int getCount() {
-                            return newdongtailist.size();
-                        }
-                        @Override
-                        public Object getItem(int position) {
-                            return null;
-                        }
-                        @Override
-                        public long getItemId(int position) {
-                            return position;
-                        }
-                        @Override
-                        public View getView(final int position, View convertView, ViewGroup parent) {
-
-                            ViewHolder viewHolder = null;
-                            if(convertView==null) {
-                                viewHolder = new ViewHolder();
-                                convertView = View.inflate(getActivity(), R.layout.layout_item, null);
-                                viewHolder.iv_photo1= ((ImageButton) convertView.findViewById(R.id.iv_photo1));
-                                viewHolder.tv_title = ((TextView) convertView.findViewById(R.id.tv_title));
-                                viewHolder.tv_name = ((TextView) convertView.findViewById(R.id.tv_name));
-                                viewHolder.tv_content= ((TextView)  convertView.findViewById(R.id.tv_content));
-                                viewHolder.tv_remark= ((TextView)  convertView.findViewById(R.id.tv_remark));
-                                viewHolder.iv_dianzan= ((ImageView) convertView.findViewById(R.id.iv_dianzan));
-                                convertView.setTag(viewHolder);//缓存对象
-                            }else{
-                                viewHolder = (ViewHolder)convertView.getTag();
-                            }
-                            final Dongtai  dongtai = newdongtailist.get(position);
-                            viewHolder.iv_photo1.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    System.out.println("xxx"+dongtai.getUser().getUserId());
-                                    Intent intent = new Intent(Fragment_home.this.getActivity(), PersonDongtaiActivity.class);
-                                    intent.putExtra("userId",dongtai.getUser().getUserId());
-                                    startActivity(intent);
-                                }
-                            });
-
-                            viewHolder.tv_title.setText(dongtai.getTitle());
-                            viewHolder.tv_name.setText(dongtai.getUser().getUserName());
-                            viewHolder.tv_content.setText(dongtai.getContent());
-                            x.image().bind(viewHolder.iv_photo1,HttpUtils.url+dongtai.getUser().getPhotoImg());
 
 
-                            //点赞设置点击事件
-                            final ImageView dz=viewHolder.iv_dianzan;
-                            viewHolder.iv_dianzan.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    if(sharedPreferences.contains(position+"")){//选中状态
-                                        dz.setImageResource(R.drawable.dianzan_gray);
-//                            Integer dongtaiId= dongtai.dongtaiId;
-                                        deleteDianzan((Integer)dz.getTag());
-                                        Log.i("Fragment",(Integer)dz.getTag()+"");
-                                        Toast.makeText(getActivity(),"取消点赞",Toast.LENGTH_SHORT).show();
-
-                                        editor.remove(position+"");
-
-                                    }else{
-                                        dz.setImageResource(R.drawable.dianzan_blue);
-//                            Integer dongtaiId= dongtai.dongtaiId;
-                                        insertDianzan((Integer)dz.getTag());
-                                        Log.i("Fragment11",(Integer)dz.getTag()+"");
-                                        Toast.makeText(getActivity(),"点赞成功",Toast.LENGTH_SHORT).show();
-
-                                        editor.putInt(position+"",(Integer)dz.getTag());
-                                    }
-                                    editor.commit();
-
-                                }
-                            });
-                            viewHolder.iv_dianzan.setTag(dongtai.dongtaiId);
-                            if(sharedPreferences.contains(position+"")){
-                                dz.setImageResource(R.drawable.dianzan_blue);
-                            }else{
-                                dz.setImageResource(R.drawable.dianzan_gray);
-                            }
-
-                            if (null != dongtai.remarklist && dongtai.remarklist.size() > 0) {
-                                Log.i("Fragment_home",dongtai.remarklist+"===============");
-//                    System.out.print(dongtai.remarklist);
-                                viewHolder.tv_remark.setVisibility(View.VISIBLE);
-                                String string = "";
-                                for (Remark remark : dongtai.remarklist) {
-                                    System.out.print(remark);
-                                    if((remark.isEnd)==true){
-                                        string +=remark.user.getUserName()+":"+ remark.remarkContent + "\n";
-                                    }else if((remark.isEnd)==false){
-                                        string +=remark.user.getUserName()+"回复"+remark.fatheruser.getUserName()+":"+remark.remarkContent + "\n";
-                                    }
-                                    viewHolder.tv_remark.setText(string);
-                                }
-
-                            } else {
-                                viewHolder.tv_remark.setVisibility(View.GONE);
-                            }
-
-
-                            return convertView;
-                        }
-                    };
-                    lv_dtt.setAdapter(adapter);
-                }
-                else{
-                    adapter.notifyDataSetChanged();}
+                    adapter.notifyDataSetChanged();
 
             }
             @Override

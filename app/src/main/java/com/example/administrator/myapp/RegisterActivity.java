@@ -169,7 +169,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         iPhone = et_zhanghao.getText().toString().trim();
                         SMSSDK.getVerificationCode("86",iPhone);
                         et_mima.requestFocus();
-                        getCord.setVisibility(View.GONE);
+                        getCord.setVisibility(View.INVISIBLE);
                     }else{
                         Toast.makeText(RegisterActivity.this, "请输入完整电话号码", Toast.LENGTH_LONG).show();
                         et_zhanghao.requestFocus();

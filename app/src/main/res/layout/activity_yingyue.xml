@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
 
-    tools:context="com.example.administrator.framework.erji_activity.YingyueActivity">
+    tools:context="com.example.administrator.myapp.YingyueActivity">
 
 
     <android.support.v7.widget.Toolbar

@@ -188,8 +188,10 @@ public class SenddongtaiActivity extends AppCompatActivity {
 
         RequestParams params = new RequestParams(HttpUtils.url + "UploadDongtai");
 
-        params.addBodyParameter("userId", String.valueOf(((MyApplication) this.getApplication()).getUser().getUserId()));
+        Toast.makeText(SenddongtaiActivity.this, "xxxuserId", Toast.LENGTH_SHORT).show();
+        Log.i("uploadDynamic: ", "uploadDynamic: ");
         try {
+            params.addBodyParameter("userId", 1+"");
             params.addBodyParameter("release_text", URLEncoder.encode(release_text, "utf-8"));
             params.addBodyParameter("place", URLEncoder.encode("苏州", "utf-8"));
         } catch (UnsupportedEncodingException e) {

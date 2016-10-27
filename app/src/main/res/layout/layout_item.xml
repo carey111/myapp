@@ -61,17 +61,18 @@
         android:layout_height="30dp" />
     <TextView
         android:id="@+id/tv_remark"
-        android:visibility="visible"
         android:textColor="#000000"
+        android:text="aaa"
         android:layout_below="@id/iv_dianzan"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <EditText
-        android:id="@+id/et_pinglun"
-        android:layout_below="@id/tv_remark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et_pinglun"
+            android:layout_below="@id/tv_remark"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
 </RelativeLayout>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.example.administrator.framework.sanji_activity.SousuoActivity">
+    tools:context="com.example.administrator.myapp.SousuoActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

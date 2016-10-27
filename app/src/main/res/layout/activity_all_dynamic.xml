@@ -4,14 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    android:orientation="vertical"
-    tools:context="com.example.administrator.myapp.AllDynamicActivity">
+    android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#5867f1">
-
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tv_userNicheng"
             android:layout_width="wrap_content"
@@ -19,7 +21,9 @@
             android:text="用户昵称"
             android:textColor="#000"
             android:textSize="20sp"
-            android:layout_marginLeft="160dp"/>
+            android:layout_weight="1"
+            android:gravity="center_horizontal"/>
+            </LinearLayout>
     </android.support.v7.widget.Toolbar>
 
 

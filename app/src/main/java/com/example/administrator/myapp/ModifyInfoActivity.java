@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -124,21 +125,20 @@ public class ModifyInfoActivity extends AppCompatActivity {
             }
         });
         //判断sd卡是否存在，存在
+
+        initView(user);
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             //目录，文件名Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
             file = new File(Environment.getExternalStorageDirectory(), getPhotoFileName());
             imageUri = Uri.fromFile(file);
+            Log.e("s",imageUri.getPath());
+
         }
-        initView(user);
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-
-    }
-
     public void initView(User user) {
         realName = ((TextView) findViewById(R.id.tv_real_name));
         realPsd = ((TextView) findViewById(R.id.tv_real_psd));
@@ -147,7 +147,6 @@ public class ModifyInfoActivity extends AppCompatActivity {
         realPsd.setText(user.getUserPsd());
         realInterest.setText(user.getInterestLabel());
     }
-
     //获取网络数据
     public void getOrderData() {
         RequestParams requestParams = new RequestParams(NetUtil.url + "userinfoqueryservlet");
@@ -160,10 +159,7 @@ public class ModifyInfoActivity extends AppCompatActivity {
                 user.getUserName();
                 user.getUserPsd();
                 user.getInterestLabel();
-
-
             }
-
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
@@ -236,24 +232,19 @@ public class ModifyInfoActivity extends AppCompatActivity {
                 break;
         }
     }
-
     public void crop(Uri uri) {
         //  intent.setType("image/*");
         //裁剪
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
-
         intent.putExtra("crop", "true");
-
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
-
         intent.putExtra("outputX", 200);
         intent.putExtra("outputY", 200);
         intent.putExtra("return-data", true);
         startActivityForResult(intent, CROP);
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -261,18 +252,26 @@ public class ModifyInfoActivity extends AppCompatActivity {
                 //相册选择
                 if (data != null) {
                     crop(data.getData());
+                    Log.i("onActivityResult", "onActivityResult: "+ data.getData().getPath());
+                    Log.i("onAct", Environment.getExternalStorageDirectory()+"");
                 }
                 break;
             case TAKE_PHOTO:
                 crop(Uri.fromFile(file));
+             ;
                 break;
             case CROP:
                 if (data != null) {
                     Bundle extras = data.getExtras();
                     if (extras != null) {
+
                         Bitmap bitmap = extras.getParcelable("data");
+
+
+
                         showImage(bitmap);
                     }
+
                 }
             case 1:
                 //修改姓名返回
@@ -315,6 +314,7 @@ public class ModifyInfoActivity extends AppCompatActivity {
     public void uploadImage() {
 
         RequestParams requestParams = new RequestParams(NetUtil.url + "uploadimageservlet");
+        requestParams.addBodyParameter("phoneNum", phoneNum1);
         requestParams.setMultipart(true);
         requestParams.addBodyParameter("file", file);
 

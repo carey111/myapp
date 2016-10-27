@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.myapp.pojo.RentInfoBean;
+import com.example.administrator.myapp.util.NetUtil;
 import com.example.administrator.myapp.widget.TitleBar;
 import com.google.gson.Gson;
 
@@ -67,7 +68,7 @@ public class CollectActivity extends AppCompatActivity {
 
                 tv_area.setText(rentInfo.roomArea);
                 tv_zujin.setText((rentInfo.roomRent).toString());
-                x.image().bind(iv_photo ,"http://10.0.2.2:8080/"+rentInfo.photoImg);
+                x.image().bind(iv_photo , NetUtil.url+rentInfo.photoImg);
 
                 return view;
             }
@@ -78,7 +79,7 @@ public class CollectActivity extends AppCompatActivity {
         getRentInfo();
     }
     private void getRentInfo() {
-        RequestParams params = new RequestParams("http://10.0.2.2:8080/myapp/getcollectsbypage");
+        RequestParams params = new RequestParams(NetUtil.url+"getcollectsbypage");
         //System.out.println("==================?????????????");
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override

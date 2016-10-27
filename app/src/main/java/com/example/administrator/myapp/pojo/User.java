@@ -14,6 +14,24 @@ public class User implements Parcelable {
 	private Boolean isLandlord;
 	private String realName;
 	private String cardNum;
+	private String cardZheng;
+	private String cardFan;
+
+	public String getCardZheng() {
+		return cardZheng;
+	}
+
+	public void setCardZheng(String cardZheng) {
+		this.cardZheng = cardZheng;
+	}
+
+	public String getCardFan() {
+		return cardFan;
+	}
+
+	public void setCardFan(String cardFan) {
+		this.cardFan = cardFan;
+	}
 
 	public String getRealName() {
 		return realName;
@@ -39,6 +57,8 @@ public class User implements Parcelable {
 		interestLabel=in.readString();
 		realName=in.readString();
 		cardNum=in.readString();
+		cardZheng=in.readString();
+		cardFan=in.readString();
 
 	}
 
@@ -153,6 +173,7 @@ public class User implements Parcelable {
 		dest.writeString(interestLabel);
 		dest.writeString(realName);
 		dest.writeString(cardNum);
-
+		dest.writeString(cardZheng);
+        dest.writeString(cardFan);
 	}
 }

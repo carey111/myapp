@@ -194,8 +194,8 @@ User user=null;
                 Gson gson=new Gson();
                 user=gson.fromJson(result,User.class);
                  imgUrl=user.getPhotoImg();
-                x.image().bind(touxiang,"http://10.0.2.2:8080/myapp/"+imgUrl);
-                //Log.e("ccc", "http://10.0.2.2:8080/myapp/"+imgUrl);
+                x.image().bind(touxiang,NetUtil.url+imgUrl);
+
             }
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {

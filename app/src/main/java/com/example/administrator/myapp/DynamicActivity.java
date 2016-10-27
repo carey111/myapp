@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.myapp.pojo.DynamicInfoBean;
+import com.example.administrator.myapp.util.NetUtil;
 import com.example.administrator.myapp.widget.TitleBar;
 import com.google.gson.Gson;
 
@@ -89,7 +90,7 @@ public class DynamicActivity extends AppCompatActivity implements View.OnClickLi
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-                x.image().bind(iv_photo ,"http://10.0.2.2:8080/myapp/"+dynamicInfo.dynamicImg);
+                x.image().bind(iv_photo , NetUtil.url+dynamicInfo.dynamicImg);
 
                 return view;
             }
@@ -101,7 +102,7 @@ public class DynamicActivity extends AppCompatActivity implements View.OnClickLi
     private void getDynamicInfo() {
         dynamicInfoList.clear();
         System.out.println("==================?????????????");
-        RequestParams params = new RequestParams("http://10.0.2.2:8080/myapp/getdynamicbypage");
+        RequestParams params = new RequestParams(NetUtil.url+"getdynamicbypage");
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
