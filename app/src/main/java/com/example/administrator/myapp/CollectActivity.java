@@ -1,5 +1,7 @@
 package com.example.administrator.myapp;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,11 +29,15 @@ public class CollectActivity extends AppCompatActivity {
     final ArrayList<RentInfoBean.RentInfo> rentInfoList = new ArrayList<RentInfoBean.RentInfo>();
     private BaseAdapter adapter;
     private TitleBar tv_bar;
+    String phoneNum1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collect);
         tv_bar = ((TitleBar) findViewById(R.id.tb_bar));
+        SharedPreferences sharedPreferences = this.getSharedPreferences("SP",
+                Activity.MODE_PRIVATE);
+        phoneNum1 = sharedPreferences.getString("phone", "");
         tv_bar.setLeftLayoutClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +87,7 @@ public class CollectActivity extends AppCompatActivity {
     private void getRentInfo() {
         RequestParams params = new RequestParams(NetUtil.url+"getcollectsbypage");
         //System.out.println("==================?????????????");
+        params.addQueryStringParameter("phoneNum",phoneNum1);
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {

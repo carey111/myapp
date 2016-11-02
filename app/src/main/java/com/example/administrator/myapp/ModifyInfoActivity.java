@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.myapp.pojo.User;
 import com.example.administrator.myapp.util.CommonAdapter;
@@ -39,6 +40,8 @@ import java.util.Date;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 
 public class ModifyInfoActivity extends AppCompatActivity {
     @InjectView(R.id.view1)
@@ -55,10 +58,7 @@ public class ModifyInfoActivity extends AppCompatActivity {
     View view2;
     @InjectView(R.id.tv_name)
     TextView tvName;
-    //    @InjectView(R.id.tv_real_name)
-//    TextView tvRealName;
-//    @InjectView(R.id.iv_edit_name)
-//    ImageView ivEditName;
+
     @InjectView(R.id.rl_edit_name)
     RelativeLayout rlEditName;
     @InjectView(R.id.view3)
@@ -94,6 +94,7 @@ public class ModifyInfoActivity extends AppCompatActivity {
     //相机拍摄照片和视频的标准目录
     private File file;
     private Uri imageUri;
+    String  hobbys[]={"运动", "音乐", "游戏", "休闲"};
     String items[] = {"相册选择", "拍照"};
     public static final int SELECT_PIC = 11;
     public static final int TAKE_PHOTO = 12;
@@ -105,7 +106,7 @@ public class ModifyInfoActivity extends AppCompatActivity {
     private TextView realPsd;
     private TextView realInterest;
     CommonAdapter<User> userAdapter;
-
+    String str=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,11 +122,11 @@ public class ModifyInfoActivity extends AppCompatActivity {
         tv_bar.setLeftLayoutClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getToken();
                 finish();
             }
         });
         //判断sd卡是否存在，存在
-
         initView(user);
     }
     @Override
@@ -136,7 +137,6 @@ public class ModifyInfoActivity extends AppCompatActivity {
             file = new File(Environment.getExternalStorageDirectory(), getPhotoFileName());
             imageUri = Uri.fromFile(file);
             Log.e("s",imageUri.getPath());
-
         }
     }
     public void initView(User user) {
@@ -151,6 +151,7 @@ public class ModifyInfoActivity extends AppCompatActivity {
     public void getOrderData() {
         RequestParams requestParams = new RequestParams(NetUtil.url + "userinfoqueryservlet");
         requestParams.addQueryStringParameter("phoneNum", phoneNum1);
+        Log.i("phoneNum", "getOrderData: "+phoneNum1);
         x.http().get(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -164,26 +165,19 @@ public class ModifyInfoActivity extends AppCompatActivity {
             public void onError(Throwable ex, boolean isOnCallback) {
 
             }
-
             @Override
             public void onCancelled(CancelledException cex) {
-
             }
-
             @Override
             public void onFinished() {
-
             }
         });
-
     }
-
     private String getPhotoFileName() {
         Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
         return sdf.format(date) + ".png";
     }
-
     @OnClick({R.id.rl_edit_head_image, R.id.rl_edit_name, R.id.rl_edit_pwd, R.id.rl_edit_interest})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -211,6 +205,7 @@ public class ModifyInfoActivity extends AppCompatActivity {
                         }
                     }
                 }).show();
+
                 break;
             case R.id.rl_edit_name:
                 //修改姓名
@@ -225,12 +220,41 @@ public class ModifyInfoActivity extends AppCompatActivity {
                 startActivityForResult(intent2, 2);
                 break;
             case R.id.rl_edit_interest:
-                //写该兴趣标签
-                Intent intent3 = new Intent(this, EditInfoActivity.class);
-                intent3.putExtra("flag", "interest");
-                startActivityForResult(intent3, 3);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("请选择");
+                builder.setItems(hobbys, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.i("onClick: ", "onClick: "+which);
+
+                        switch (which){
+                            case 0:
+                                realInterest.setText("运动");
+                               str="运动";
+                                getOrderData1();
+                                break;
+                            case 1:
+                                realInterest.setText("音乐");
+                                str="音乐";
+                                getOrderData1();
+                                break;
+                            case 2:
+                                realInterest.setText("游戏");
+                                str="游戏";
+                                getOrderData1();
+                                break;
+                            case 3:
+                                realInterest.setText("休闲");
+                                str="休闲";
+                                getOrderData1();
+                                break;
+                        }
+                    }
+                });
+                builder.show();
                 break;
         }
+
     }
     public void crop(Uri uri) {
         //  intent.setType("image/*");
@@ -244,6 +268,32 @@ public class ModifyInfoActivity extends AppCompatActivity {
         intent.putExtra("outputY", 200);
         intent.putExtra("return-data", true);
         startActivityForResult(intent, CROP);
+    }
+    public void  getOrderData1(){
+        RequestParams requestParams = new RequestParams(NetUtil.url + "userinfoupdateservlet3");
+        requestParams.addQueryStringParameter("phoneNum",phoneNum1);
+        requestParams.addQueryStringParameter("interestLabel",str);
+        x.http().get(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Toast.makeText(ModifyInfoActivity.this, "修改成功", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -266,12 +316,8 @@ public class ModifyInfoActivity extends AppCompatActivity {
                     if (extras != null) {
 
                         Bitmap bitmap = extras.getParcelable("data");
-
-
-
                         showImage(bitmap);
                     }
-
                 }
             case 1:
                 //修改姓名返回
@@ -286,7 +332,6 @@ public class ModifyInfoActivity extends AppCompatActivity {
                 String psd = data.getStringExtra("psd");
                 realPsd.setText(psd);
                 break;
-
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -358,5 +403,35 @@ public class ModifyInfoActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+
+    private void getToken(){
+        RequestParams params=new RequestParams(NetUtil.url+"gettokenbyphonenum");
+        params.addQueryStringParameter("phoneNum",phoneNum1);
+        Log.i("phoneNum", "getToken: "+phoneNum1);
+        x.http().get(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Gson gson=new Gson();
+                User user=gson.fromJson(result, User.class);
+                RongIM.getInstance().refreshUserInfoCache(new UserInfo(user.getUserId()+"",user.getUserName(), Uri.parse(NetUtil.url+user.getPhotoImg())));
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.e("ex", "onError: " +ex);
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
+
 }
 

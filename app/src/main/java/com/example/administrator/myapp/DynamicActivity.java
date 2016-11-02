@@ -1,5 +1,7 @@
 package com.example.administrator.myapp;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,6 +38,7 @@ public class DynamicActivity extends AppCompatActivity implements View.OnClickLi
     float mCurPosX = 0;
     float mCurPosY = 0;
     private TitleBar tv_bar;
+    String phoneNum1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,13 +83,13 @@ public class DynamicActivity extends AppCompatActivity implements View.OnClickLi
                 TextView  tv_title = ((TextView) view.findViewById(R.id.tv_title));
                 TextView tv_content = ((TextView) view.findViewById(R.id.tv_content));
                 TextView tv_time = ((TextView) view.findViewById(R.id.tv_time));
-                TextView tv_dianzan = ((TextView) view.findViewById(R.id.tv_dianzan));
+
                 iv_photo = ((ImageView) view. findViewById(R.id.iv_photo));
                 try {
                     tv_title.setText (URLDecoder.decode(dynamicInfo.dynamicTitle,"utf-8"));
                     tv_content.setText(URLDecoder.decode(dynamicInfo.dynamicContent,"utf-8"));
                     tv_time.setText((dynamicInfo.dynamicTime).toString());
-                    tv_dianzan.setText(URLDecoder.decode(dynamicInfo.dynamicZan,"utf-8"));
+//                    tv_dianzan.setText(URLDecoder.decode(dynamicInfo.dynamicZan,"utf-8"));
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
@@ -103,6 +106,10 @@ public class DynamicActivity extends AppCompatActivity implements View.OnClickLi
         dynamicInfoList.clear();
         System.out.println("==================?????????????");
         RequestParams params = new RequestParams(NetUtil.url+"getdynamicbypage");
+        SharedPreferences sharedPreferences = this.getSharedPreferences("SP",
+                Activity.MODE_PRIVATE);
+        phoneNum1 = sharedPreferences.getString("phone", "");
+        params.addQueryStringParameter("phoneNum",phoneNum1);
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {

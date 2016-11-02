@@ -11,4 +11,11 @@ public class Dianzan {
     public User user;
     public Integer dongtaiId;
     public Timestamp dianzanTime;
+
+
+    public Dianzan(Integer dongtaiId, Timestamp dianzanTime, User user) {
+        this.dongtaiId = dongtaiId;
+        this.dianzanTime = dianzanTime;
+        this.user = user;
+    }
 }

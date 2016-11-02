@@ -9,7 +9,7 @@
     <com.example.administrator.myapp.widget.TitleBar
         myapp:titleBarTitle="浏览记录"
         myapp:titleBarBackground="@drawable/navigator_bar"
-        myapp:titleBarLeftImage="@drawable/ic_launcher"
+        myapp:titleBarLeftImage="@drawable/nav_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />

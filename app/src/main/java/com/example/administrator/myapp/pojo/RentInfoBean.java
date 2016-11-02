@@ -8,14 +8,12 @@ import java.util.List;
 public class RentInfoBean {
     public List<RentInfo> rentInfoList;
     public  static class  RentInfo {
-
         public int collectId;
         public String roomType;
         public String roomArea;
         public Double roomRent;
         public  String photoImg;
-
-
+        public int roomId;
         @Override
         public String toString() {
             return "RentInfo{" +
@@ -24,6 +22,7 @@ public class RentInfoBean {
                     ", roomArea='" + roomArea + '\'' +
                     ", roomRent=" + roomRent +
                     ", photoImg='" + photoImg + '\'' +
+                    ", roomId=" + roomId +
                     '}';
         }
     }

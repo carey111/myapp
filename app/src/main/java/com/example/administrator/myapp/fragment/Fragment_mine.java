@@ -20,7 +20,11 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.example.administrator.myapp.AboutUsActivity;
+import com.example.administrator.myapp.CollectActivity;
+import com.example.administrator.myapp.DynamicActivity;
 import com.example.administrator.myapp.LoginActivity;
+import com.example.administrator.myapp.LookRecordActivity;
 import com.example.administrator.myapp.ModifyInfoActivity;
 import com.example.administrator.myapp.OrderActivity;
 import com.example.administrator.myapp.R;
@@ -65,7 +69,7 @@ public class Fragment_mine extends Fragment {
     private ImageView touxiang;
     String imgUrl=null;
     String phoneNum1=null;
-User user=null;
+     User user=null;
     String userId=null;
     @Nullable
     @Override
@@ -82,7 +86,7 @@ User user=null;
                 startActivity(intent);
             }
         });
-        iCallBack = (ICallBack) getActivity();
+        //iCallBack = (ICallBack) getActivity();
         int[] iv_photoImgs = new int[]{R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.d, R.drawable.e, R.drawable.f, R.drawable.h};
         String[] titiles = new String[]{"用户信息", "我的订单", "我是房东", "我的收藏", "浏览记录", "关于我们", "我的动态"};
         List<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
@@ -114,7 +118,9 @@ User user=null;
                         getActivity().startActivity(intent);
                         break;
                     case 1:
-                        iCallBack.onclick1(view);
+                        Intent intent3=new Intent(getActivity(), OrderActivity.class);
+                        getActivity().startActivity(intent3);
+                        //iCallBack.onclick1(view);
                         break;
                     case 2:
                         if(user.getLandlord().equals(true)){
@@ -127,16 +133,25 @@ User user=null;
                         }
                         break;
                     case 3:
-                       iCallBack.onclick3(view);
+                        Intent intent2=new Intent(getActivity(), CollectActivity.class);
+                        getActivity().startActivity(intent2);
+                        //iCallBack.onclick3(view);
                         break;
                     case 4:
-                        iCallBack.onclick4(view);
+                        Intent intent4=new Intent(getActivity(), LookRecordActivity.class);
+                        getActivity().startActivity(intent4);
+                        //iCallBack.onclick4(view);
                         break;
                     case 5:
-                        iCallBack.onclick5(view);
+                        Intent intent5=new Intent(getActivity(), AboutUsActivity.class);
+                        getActivity().startActivity(intent5);
+                        // iCallBack.onclick5(view);
                         break;
                     case 6:
-                        iCallBack.onclick6(view);
+                        Intent intent6=new Intent(getActivity(), DynamicActivity.class);
+                        getActivity().startActivity(intent6);
+
+                        //iCallBack.onclick6(view);
                         break;
                 }
             }

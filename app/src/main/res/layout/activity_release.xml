@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    xmlns:myapp="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.administrator.myapp.ReleaseActivity">
+
+    <com.example.administrator.myapp.widget.TitleBar
+        myapp:titleBarTitle="发布房源"
+        android:id="@+id/tb_bar"
+        myapp:titleBarBackground="@drawable/navigator_bar"
+        myapp:titleBarLeftImage="@drawable/nav_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+<RelativeLayout
+    android:layout_marginTop="20dp"
+    android:id="@+id/rl_fang"
+    android:background="#b4b1b1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:text="第一步："
+        android:textSize="20sp"
+        android:id="@+id/tv_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+<TextView
+    android:layout_below="@+id/tv_one"
+    android:id="@+id/tv_1"
+    android:text="租金："
+    android:textSize="24sp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+    <EditText
+        android:layout_below="@+id/tv_one"
+        android:id="@+id/tv_2"
+        android:text="100"
+        android:textSize="24sp"
+        android:layout_marginLeft="40dp"
+        android:background="#768acc"
+        android:layout_toRightOf="@+id/tv_1"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_3"
+        android:text="面积："
+        android:layout_below="@+id/tv_1"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/tv_4"
+        android:text="100"
+        android:layout_below="@+id/tv_2"
+        android:textSize="24sp"
+        android:layout_marginLeft="40dp"
+        android:background="#768acc"
+        android:layout_toRightOf="@+id/tv_1"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_5"
+        android:text="户型："
+        android:layout_below="@+id/tv_3"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/tv_6"
+        android:text="100"
+        android:layout_below="@+id/tv_4"
+        android:textSize="24sp"
+        android:layout_marginLeft="40dp"
+        android:background="#768acc"
+        android:layout_toRightOf="@+id/tv_1"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_7"
+        android:text="地址："
+        android:layout_below="@+id/tv_5"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/tv_8"
+        android:text="苏州"
+        android:layout_below="@+id/tv_6"
+        android:textSize="24sp"
+        android:layout_marginLeft="40dp"
+        android:background="#768acc"
+        android:layout_toRightOf="@+id/tv_1"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/tv_a"
+        android:text="类型："
+        android:layout_below="@+id/tv_7"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/tv_b"
+        android:text="single"
+        android:layout_below="@+id/tv_8"
+        android:textSize="24sp"
+        android:layout_marginLeft="40dp"
+        android:background="#768acc"
+        android:layout_toRightOf="@+id/tv_1"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@+id/rl_fang"
+        android:id="@+id/rl_xiangqing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/tv_10"
+            android:layout_marginTop="20dp"
+            android:text="房屋详情"
+            android:textSize="24sp"
+            android:layout_marginLeft="50dp"
+            android:layout_width="300dp"
+            android:layout_centerVertical="true"
+            android:background="#999393"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+<RelativeLayout
+    android:layout_below="@+id/rl_xiangqing"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/bt_fabu"
+        android:text="保存"
+        android:textSize="24sp"
+        android:background="#747cd1"
+        android:layout_width="100dp"
+        android:layout_height="60dp" />
+</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_zhaopian"
+        android:layout_below="@+id/tb_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="第二步："
+            android:textSize="20sp"
+            android:id="@+id/tv_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_below="@+id/tv_two"
+            android:id="@+id/iv_zhaopian"
+            android:src="@drawable/jiahao"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
+        <TextView
+            android:text="主照片"
+            android:textSize="24sp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/iv_zhaopian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_below="@+id/tv_two"
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@+id/iv_zhaopian"
+            android:id="@+id/iv_zhaopian1"
+            android:src="@drawable/jiahao"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
+        <TextView
+            android:layout_below="@+id/iv_zhaopian"
+            android:text="副照片"
+            android:layout_marginLeft="60dp"
+            android:textSize="24sp"
+            android:layout_marginTop="30dp"
+            android:layout_toRightOf="@id/iv_zhaopian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_below="@+id/tv_two"
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@+id/iv_zhaopian1"
+            android:id="@+id/iv_zhaopian2"
+            android:src="@drawable/jiahao"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
+        <TextView
+            android:layout_below="@+id/iv_zhaopian"
+            android:text="副照片"
+            android:layout_marginLeft="60dp"
+            android:textSize="24sp"
+            android:layout_marginTop="30dp"
+            android:layout_toRightOf="@id/iv_zhaopian1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

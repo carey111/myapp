@@ -8,13 +8,19 @@
     tools:context="com.example.administrator.myapp.fragment.Fragment_home">
 
 
+    <ImageView
+        android:src="@drawable/aaa"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
 
- <com.jude.rollviewpager.RollPagerView
-     android:id="@+id/roll_view_pager"
-     android:layout_width="match_parent"
-     android:layout_height="200dp"
-     app:rollviewpager_play_delay="3000"/>
-   <ListView
+ <!--<com.jude.rollviewpager.RollPagerView-->
+     <!--android:id="@+id/roll_view_pager"-->
+     <!--android:layout_width="match_parent"-->
+     <!--android:layout_height="200dp"-->
+     <!--app:rollviewpager_play_delay="3000"/>-->
+
+   <com.example.administrator.myapp.util.RefreshListView
        android:id="@+id/lv_dtt"
        android:layout_marginTop="200dp"
        android:divider="@null"
@@ -22,7 +28,7 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent">
 
-   </ListView>
+   </com.example.administrator.myapp.util.RefreshListView>
     <Button
         android:text="音乐"
         android:background="@null"
@@ -74,10 +80,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-<!--<ImageView-->
-    <!--android:src="@drawable/aaa"-->
-    <!--android:scaleType="fitXY"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="200dp" />-->
 
 </RelativeLayout>

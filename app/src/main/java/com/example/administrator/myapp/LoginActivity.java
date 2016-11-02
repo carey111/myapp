@@ -111,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString("phone",phoneNum);
 
 
+
                 editor.commit();
                 break;
         }

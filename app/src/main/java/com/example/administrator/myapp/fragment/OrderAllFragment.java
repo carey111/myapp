@@ -117,7 +117,7 @@ public class OrderAllFragment extends BaseFragment {
                 Gson gson=new Gson();
                 Type type=new TypeToken<List<Order>>(){}.getType();
                 List <Order> newOrders= gson.fromJson(result,type);
-
+                Log.e("all",newOrders.size()+"");
                 orders.addAll(newOrders);
 
                         orderAdapter.notifyDataSetChanged();
@@ -158,7 +158,8 @@ public void initItemView(ViewHolder viewHolder,Order order){
         orderDetailAdapter=new CommonAdapter<OrderDetail>(getActivity(),order.getOrderDetails(),R.layout.layout_ordertetailed) {
             @Override
             public void convert(ViewHolder viewHolder, OrderDetail orderDetail, int position) {
-            TextView tvType=viewHolder.getViewById(R.id.tv_type);
+                if(orderDetail.getRentInfo()!=null) {
+                TextView tvType=viewHolder.getViewById(R.id.tv_type);
                 tvType.setText(orderDetail.getRentInfo().roomType);
               TextView tvArea=viewHolder.getViewById(R.id.tv_area);
                 tvArea.setText(orderDetail.getRentInfo().roomArea);
@@ -167,7 +168,7 @@ public void initItemView(ViewHolder viewHolder,Order order){
                 ImageView ivPhoto=viewHolder.getViewById(R.id.iv_photo);
                 x.image().bind(ivPhoto ,NetUtil.url+orderDetail.getRentInfo().photoImg);
                 Log.i("fragment", "convert: "+NetUtil.url+orderDetail.getRentInfo().photoImg);
-            }
+            }}
         };
         noScrollListview.setAdapter(orderDetailAdapter);
     }else{

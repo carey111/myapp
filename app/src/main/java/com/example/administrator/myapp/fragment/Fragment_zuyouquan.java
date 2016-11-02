@@ -3,7 +3,9 @@ package com.example.administrator.myapp.fragment;
 
 
 
+import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,7 +19,14 @@ import android.widget.Button;
 
 import com.example.administrator.myapp.R;
 import com.example.administrator.myapp.pojo.Friend;
+import com.example.administrator.myapp.pojo.User;
+import com.example.administrator.myapp.util.NetUtil;
 import com.example.administrator.myapp.util.NetUtils;
+import com.google.gson.Gson;
+
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +41,7 @@ import io.rong.imlib.model.UserInfo;
  * Created by Administrator on 2016/9/28.
  */
 public class Fragment_zuyouquan extends Fragment {
-    private static final String token1 = "yVOHN+v9p4pN6VSxxBqSy+Ti1mHV1bzsBudRVcrx0Llb0nHAujsAFCyRPOfT2PLZep1h9Svlnij4kXgHRGUiXQ==";
     Fragment_zuyouquan_haoyou fragment_zuyouquan_haoyou;
-    //      Fragment_zuyouquan_xiaoxi fragment_zuyouquan_xiaoxi;
     Fragment[] fragments;
     private static final String TAG = "Fragment_zuyouquan";
     //按钮的数组，一开始第一个按钮被选中
@@ -45,25 +52,44 @@ public class Fragment_zuyouquan extends Fragment {
     private Button btn_haoyou;
     private Fragment mConversationList;
     private Fragment mConversationFragment = null;
+    String phoneNum1 = null;
+    String  token;
 
-    private List<Friend> userIdList;
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("SP",
+                Activity.MODE_PRIVATE);
+        phoneNum1 = sharedPreferences.getString("phone", "");
+
+//        getToken();
+        //connectRongServer(token);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.layout_fragment_zuyoquan,null);
 
-        //初始化fragment
-        Fragment_zuyouquan_haoyou fragment_zuyouquan_haoyou=new Fragment_zuyouquan_haoyou();
-//        Fragment_zuyouquan_xiaoxi fragment_zuyouquan_xiaoxi=new Fragment_zuyouquan_xiaoxi();
-        mConversationList=initConversationList();//获取融云会话列表的对象
-        //所有fragment的数组
-        fragments=new Fragment[]{mConversationList,fragment_zuyouquan_haoyou};
+
+
         //设置按钮的数组
         tabs=new Button[2];
         btn_xiaoxi = ((Button) view.findViewById(R.id.btn_xiaoxi));
         btn_haoyou = ((Button) view.findViewById(R.id.btn_haoyou));
         tabs[0]=btn_xiaoxi;
         tabs[1]=btn_haoyou;
+        initEvent();
+        tabs[0].setSelected(true);
+        return view;
+    }
+
+    public  void initEvent(){
+        //初始化fragment
+        Fragment_zuyouquan_haoyou fragment_zuyouquan_haoyou=new Fragment_zuyouquan_haoyou();
+        mConversationList=initConversationList();//获取融云会话列表的对象
+        //所有fragment的数组
+        fragments=new Fragment[]{mConversationList,fragment_zuyouquan_haoyou};
         btn_xiaoxi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,13 +113,7 @@ public class Fragment_zuyouquan extends Fragment {
         //界面初始显示第一个fragment;添加第一个fragment
         getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fl_xiaoxi_haoyou, fragments[0]).commit();
         //初始时，按钮1选中
-        tabs[0].setSelected(true);
-
-        connectRongServer(token1);
-        initUserInfo();
-        return view;
     }
-
     public void switchFragment() {
         android.support.v4.app.FragmentTransaction transaction;
         //如果选择的项不是当前选中项，则替换；否则，不做操作
@@ -116,8 +136,15 @@ public class Fragment_zuyouquan extends Fragment {
         //当前选择项变为选中项
         oldIndex=newIndex;
     }
-    private Fragment initConversationList() {
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+    }
+
+    private Fragment initConversationList() {
         /**
          * appendQueryParameter对具体的会话列表做展示
          */
@@ -136,42 +163,55 @@ public class Fragment_zuyouquan extends Fragment {
             return mConversationFragment;
         }
     }
-    private void connectRongServer(String token) {
-
-        RongIM.connect(token, new RongIMClient.ConnectCallback() {
-            @Override
-            public void onSuccess(String userId) {
-                Log.d(TAG, "onSuccess: "+userId);
-
-            }
-            @Override
-            public void onError(RongIMClient.ErrorCode errorCode) {
-                // Log.e("onError", "onError userid:" + errorCode.getValue());//获取错误的错误码
-                Log.e(TAG, "connect failure errorCode is : " + errorCode.getValue());
-            }
-            @Override
-            public void onTokenIncorrect() {
-                Log.e(TAG, "token is error ,please check token and appkey");
-            }
-        });
-
-    }
-    private void initUserInfo() {
-        userIdList = new ArrayList<Friend>();
-        userIdList.add(new Friend("1", "liu", NetUtils.url+"myapp/imgs/bb.png"));
-        userIdList.add(new Friend("2","li", NetUtils.url+"myapp/imgs/aa.png"));
-        RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
-            @Override
-            public UserInfo getUserInfo(String s) {
-                for (Friend i : userIdList) {
-                    if ((i.getUserId()+"").equals(s)) {
-                        Log.e(TAG, i.getPortraitUri());
-                        return new UserInfo(i.getUserId()+"", i.getName(), Uri.parse(i.getPortraitUri()));
-                    }
-                }
-                return null;
-            }
-        }, true);
-    }
+//    private void getToken(){
+//        RequestParams params=new RequestParams(NetUtil.url+"gettokenbyphonenum");
+//        params.addQueryStringParameter("phoneNum",phoneNum1);
+//        Log.i("phoneNum", "getToken: "+phoneNum1);
+//        x.http().get(params, new Callback.CommonCallback<String>() {
+//            @Override
+//            public void onSuccess(String result) {
+//                Gson gson=new Gson();
+//                User user=gson.fromJson(result, User.class);
+//                token=user.getToken();
+//                connectRongServer(token);
+//                System.out.println(token+"????????????????????????????");
+//            }
+//
+//            @Override
+//            public void onError(Throwable ex, boolean isOnCallback) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(CancelledException cex) {
+//
+//            }
+//
+//            @Override
+//            public void onFinished() {
+//
+//            }
+//        });
+//    }
+//    private void connectRongServer(String token) {
+//
+//        RongIM.connect(token, new RongIMClient.ConnectCallback() {
+//            @Override
+//            public void onSuccess(String userId) {
+//                Log.d(TAG, "onSuccess: "+userId);
+//
+//            }
+//            @Override
+//            public void onError(RongIMClient.ErrorCode errorCode) {
+//                // Log.e("onError", "onError userid:" + errorCode.getValue());//获取错误的错误码
+//                Log.e(TAG, "connect failure errorCode is : " + errorCode.getValue());
+//            }
+//            @Override
+//            public void onTokenIncorrect() {
+//                Log.e(TAG, "token is error ,please check token and appkey");
+//            }
+//        });
+//
+//    }
 
 }

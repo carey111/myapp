@@ -1,9 +1,13 @@
 package com.example.administrator.myapp.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +20,9 @@ import android.widget.TextView;
 
 import com.example.administrator.myapp.FriendinfoActivity;
 import com.example.administrator.myapp.R;
+import com.example.administrator.myapp.pojo.Friend;
 import com.example.administrator.myapp.pojo.FriendsBean;
+import com.example.administrator.myapp.util.NetUtil;
 import com.example.administrator.myapp.util.NetUtils;
 import com.google.gson.Gson;
 
@@ -26,6 +32,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 
 /**
  * Created by Administrator on 2016/9/29.
@@ -69,10 +78,9 @@ public class Fragment_zuyouquan_haoyou extends Fragment {
                 iv_photo = ((ImageView) view.findViewById(R.id.iv_photo));
 
 
-               FriendsBean.Friends friend = friendsList.get(position);
+                FriendsBean.Friends friend = friendsList.get(position);
                 x.image().bind(iv_photo, NetUtils.url+"myapp/"+friend.userPhotoImg);
-
-                    tv_nicheng.setText(friend.userName);
+                tv_nicheng.setText(friend.userName);
 
 
                 return view;
@@ -81,6 +89,7 @@ public class Fragment_zuyouquan_haoyou extends Fragment {
 
         };
         lv_friends.setAdapter(adapter);
+
         //从服务器拿
         getFriendsList();
         lv_friends.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -100,9 +109,14 @@ public class Fragment_zuyouquan_haoyou extends Fragment {
         return v;
 
     }
+
+
+
     private void getFriendsList() {
         RequestParams params = new RequestParams(NetUtils.url+"myapp/getallfriendsbypage");
-
+        SharedPreferences sp = getActivity().getSharedPreferences("SP", Context.MODE_PRIVATE);
+        String phoneNum=sp.getString("phone","");
+        params.addQueryStringParameter("phoneNum",phoneNum);
         x.http().get(params, new Callback.CommonCallback<String>() {
 
             @Override
@@ -111,9 +125,13 @@ public class Fragment_zuyouquan_haoyou extends Fragment {
                 Gson gson=new Gson();
                 FriendsBean bean= gson.fromJson(result, FriendsBean.class);
 
-//                System.out.println(bean.status+"??????");
-//                System.out.println(bean.chatRecordList.size()+"======");
                 friendsList.addAll(bean.friendsList);
+                for (int i=0;i<friendsList.size();i++){
+                    RongIM.getInstance().refreshUserInfoCache(new UserInfo(bean.friendsList.get(i).friendId+"",bean.friendsList.get(i).userName,Uri.parse(NetUtil.url+bean.friendsList.get(i).userPhotoImg)));
+                    Log.e("img", "onSuccess: "+bean.friendsList.get(i).userPhotoImg );
+                }
+
+
                 System.out.println(friendsList);
                 //通知listview更新界面
                 adapter.notifyDataSetChanged();

@@ -9,8 +9,81 @@ public class RentInfo implements Serializable {
 	private Double roomRent;
 	private String photoImg;
 	private User user;
-	
-	
+	private String roomContent;
+	private String roomAdress;
+	private int rongliang;
+	private String phoneNum;
+	private String roomImg1;
+	private int roomId;
+	private String roomImg2;
+
+	public int getRoomId() {
+		return roomId;
+	}
+
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
+	}
+
+	public String getRoomImg1() {
+		return roomImg1;
+	}
+
+	public void setRoomImg1(String roomImg1) {
+		this.roomImg1 = roomImg1;
+	}
+
+	public String getRoomImg2() {
+		return roomImg2;
+	}
+
+	public void setRoomImg2(String roomImg2) {
+		this.roomImg2 = roomImg2;
+	}
+
+	public RentInfo(int roomArea, Double roomRent, String roomContent,
+					String roomAdress, int rongliang, String phoneNum) {
+		super();
+		this.roomArea = roomArea;
+		this.roomRent = roomRent;
+		this.roomContent = roomContent;
+		this.roomAdress = roomAdress;
+		this.rongliang = rongliang;
+		this.phoneNum = phoneNum;
+	}
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+	public RentInfo(int roomArea, Double roomRent, String roomContent,
+			String roomAdress, int rongliang) {
+		super();
+		this.roomArea = roomArea;
+		this.roomRent = roomRent;
+		this.roomContent = roomContent;
+		this.roomAdress = roomAdress;
+		this.rongliang = rongliang;
+	}
+	public String getRoomContent() {
+		return roomContent;
+	}
+	public void setRoomContent(String roomContent) {
+		this.roomContent = roomContent;
+	}
+	public String getRoomAdress() {
+		return roomAdress;
+	}
+	public void setRoomAdress(String roomAdress) {
+		this.roomAdress = roomAdress;
+	}
+	public int getRongliang() {
+		return rongliang;
+	}
+	public void setRongliang(int rongliang) {
+		this.rongliang = rongliang;
+	}
 	public RentInfo(String roomType, int roomArea, Double roomRent,
 			String photoImg) {
 		super();

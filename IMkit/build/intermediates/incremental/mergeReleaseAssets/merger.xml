@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\worksapce_android\myapp\IMkit\src\main\assets"/><source path="D:\worksapce_android\myapp\IMkit\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\worksapce_android\myapp\IMkit\src\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\javasoft\My_androidstudio\myapp\IMkit\src\main\assets"/><source path="D:\javasoft\My_androidstudio\myapp\IMkit\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\javasoft\My_androidstudio\myapp\IMkit\src\release\assets"/></dataSet></merger>

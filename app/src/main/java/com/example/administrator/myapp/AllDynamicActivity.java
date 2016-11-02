@@ -22,7 +22,7 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllDynamicActivity extends AppCompatActivity {
+public class AllDynamicActivity extends AppCompatActivity implements View.OnClickListener{
     private TextView tv_userNicheng;
     private ListView lv_alldynamic;
     private BaseAdapter adapter;
@@ -34,6 +34,7 @@ public class AllDynamicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_dynamic);
         initData();
+        ((ImageView) findViewById(R.id.img_back)).setOnClickListener(this);
         lv_alldynamic = ((ListView) findViewById(R.id.lv_alldynamic));
         adapter=new BaseAdapter() {
             @Override
@@ -57,13 +58,13 @@ public class AllDynamicActivity extends AppCompatActivity {
                 ImageView iv_photoImg1=((ImageView) view.findViewById(R.id.iv_photoImg1));
                 TextView tv_title1=((TextView) view.findViewById(R.id.tv_title1));
                 TextView tv_content1=((TextView) view.findViewById(R.id.tv_content1));
-                TextView tv_dianzancount1=((TextView) view.findViewById(R.id.tv_dianzancount1));
+//                TextView tv_dianzancount1=((TextView) view.findViewById(R.id.tv_dianzancount1));
                 ImageView iv_dynamicImg1=((ImageView) view.findViewById(R.id.iv_dynamicImg1));
                 TextView tv_booleandemand=((TextView) view.findViewById(R.id.tv_booleandemand));
                 AllDynamicBean.Dynamics dynamics=dynamicsList.get(position);
                 tv_title1.setText(dynamics.dynamicTitle);
                 tv_content1.setText(dynamics.dynamicContent);
-                tv_dianzancount1.setText(dynamics.dynamicZan+"");
+//                tv_dianzancount1.setText(dynamics.dynamicZan+"");
                 if("true".equals(dynamics.hasDemand)) {
                     tv_booleandemand.setText("有");
                 }else{
@@ -121,5 +122,14 @@ public class AllDynamicActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.img_back:
+                finish();
+                break;
+        }
     }
 }

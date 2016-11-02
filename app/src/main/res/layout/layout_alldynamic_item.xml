@@ -69,25 +69,25 @@
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@id/iv_photoImg1"
         android:layout_below="@+id/tv_content1" />
-    <ImageView
-        android:id="@+id/iv_dianzan"
-        android:src="@drawable/arl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/iv_dynamicImg1"
-        android:layout_below="@+id/iv_dynamicImg1"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="50dp"/>
-    <TextView
-        android:id="@+id/tv_dianzancount1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="10"
-        android:textSize="20sp"
-        android:textColor="#000"
-        android:layout_toRightOf="@+id/iv_dianzan"
-        android:layout_alignTop="@+id/iv_dianzan"
-        android:layout_marginLeft="-50dp"/>
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_dianzan"-->
+        <!--android:src="@drawable/arl"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_toRightOf="@id/iv_dynamicImg1"-->
+        <!--android:layout_below="@+id/iv_dynamicImg1"-->
+        <!--android:layout_marginLeft="100dp"-->
+        <!--android:layout_marginRight="50dp"/>-->
+    <!--<TextView-->
+        <!--android:id="@+id/tv_dianzancount1"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="10"-->
+        <!--android:textSize="20sp"-->
+        <!--android:textColor="#000"-->
+        <!--android:layout_toRightOf="@+id/iv_dianzan"-->
+        <!--android:layout_alignTop="@+id/iv_dianzan"-->
+        <!--android:layout_marginLeft="-50dp"/>-->
 
 
 </RelativeLayout>

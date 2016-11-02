@@ -87,18 +87,18 @@ public class OrderActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 switch (position) {
-                    case 0:
-                        orderAllFragment.getOrderData();
-                        break;
-                    case 1:
-                        prepaidFragment.getOrderData();
-                        break;
-                    case 2:
-                        payAllFragment.getOrderData();
-                        break;
-                    case 3:
-                        payFinishFragment.getOrderData();
-                        break;
+//                    case 0:
+//                        orderAllFragment.getOrderData();
+//                        break;
+//                    case 1:
+//                        prepaidFragment.getOrderData();
+//                        break;
+//                    case 2:
+//                        payAllFragment.getOrderData();
+//                        break;
+//                    case 3:
+//                        payFinishFragment.getOrderData();
+//                        break;
                 }
             }
 

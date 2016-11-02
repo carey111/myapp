@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:descendantFocusability="blocksDescendants"
+
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/iv_photo1"
         android:src="@drawable/bb"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
-        />
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignParentLeft="true"/>
     <TextView
         android:id="@+id/tv_name"
-        android:textSize="24sp"
-        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textColor="#577adc"
         android:layout_toRightOf="@id/iv_photo1"
         android:paddingLeft="20dp"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
+        android:layout_alignTop="@+id/iv_photo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="ggg"
         />
     <TextView
+        android:id="@+id/tv_time"
+        android:textColor="#577adc"
+        android:layout_below="@id/tv_name"
+        android:layout_toRightOf="@id/iv_photo1"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
         android:id="@+id/tv_title"
-        android:textSize="24sp"
-        android:textColor="#f70f160e"
-        android:layout_toRightOf="@id/tv_name"
-        android:layout_marginLeft="25dp"
-        android:paddingLeft="20dp"
-        android:background="@drawable/gggg"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
+        android:textSize="20sp"
+        android:textColor="#577adc"
+        android:layout_alignTop="@+id/iv_photo1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="ggg"
+
         />
+
     <TextView
         android:id="@+id/tv_content"
         android:textSize="20sp"
-        android:paddingLeft="10dp"
+
         android:textColor="#eb100707"
         android:layout_below="@id/iv_photo1"
         android:layout_width="match_parent"
@@ -46,33 +57,62 @@
         android:text="ggg"
         />
     <ImageView
-        android:id="@+id/iv_dianzan"
+        android:id="@+id/iv_Image"
+        android:layout_marginLeft="30dp"
         android:layout_below="@id/tv_content"
-        android:src="@drawable/dianzan_gray"
-        android:layout_marginLeft="220dp"
-        android:layout_width="30dp"
-        android:layout_height="30dp" />
+        android:layout_width="180dp"
+        android:layout_height="130dp" />
+
     <ImageView
         android:id="@+id/iv_pinglun"
         android:src="@drawable/pinglun"
-        android:layout_below="@id/tv_content"
-        android:layout_marginLeft="285dp"
+        android:layout_below="@id/iv_Image"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
         android:layout_width="30dp"
         android:layout_height="30dp" />
+    <ImageView
+        android:id="@+id/iv_dianzan"
+        android:layout_below="@id/iv_Image"
+        android:src="@drawable/dianzan_gray"
+        android:layout_toLeftOf="@+id/iv_pinglun"
+        android:layout_marginRight="30dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
+
+    <TextView
+        android:id="@+id/tv_zan"
+        android:visibility="visible"
+        android:textColor="#000000"
+        android:layout_marginTop="20dp"
+        android:text="ssssssssssss"
+        android:layout_below="@id/iv_dianzan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/tv_remark"
+        android:visibility="visible"
         android:textColor="#000000"
-        android:text="aaa"
-        android:layout_below="@id/iv_dianzan"
+        android:layout_below="@id/tv_zan"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-        <EditText
-            android:id="@+id/et_pinglun"
-            android:layout_below="@id/tv_remark"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+
+
+    <EditText
+        android:id="@+id/et_pinglun"
+        android:textColor="#000000"
+        android:background="@drawable/edit"
+
+        android:layout_below="@id/tv_remark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <!--<include android:id="@+id/pinglun"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/tv_remark"-->
+        <!--layout="@layout/layout_pinglun"/>-->
 
 
 </RelativeLayout>

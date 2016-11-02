@@ -1,14 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:contextClickable="false">
+    <RelativeLayout
+        android:id="@+id/rl_house_title"
+        android:orientation="horizontal"
+        android:background="#6a74dc"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:text="房源信息"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/b_house_release"
+            android:text="发布房源"
+            android:textColor="#151414"
+            android:textSize="16dp"
+            android:background="#fff"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
 
     <TextView
-        android:layout_centerInParent="true"
+        android:id="@+id/tv_area"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:textColor="#ff0000"
-        android:text="租房"/>
+        android:text="请选择面积大小"
+        android:textSize="20dp"
+        android:layout_below="@+id/rl_house_title"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp" />
 
+    <TextView
+        android:id="@+id/tv_rent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请选择租金多少"
+        android:textSize="20dp"
+        android:layout_below="@+id/tv_area"
+        android:layout_alignLeft="@+id/tv_area"
+        android:layout_alignStart="@+id/tv_area"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/tv_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请选择户型大小"
+        android:textSize="20dp"
+        android:layout_below="@+id/tv_rent"
+        android:layout_alignLeft="@+id/tv_rent"
+        android:layout_alignStart="@+id/tv_rent"
+        android:layout_marginTop="20dp" />
+    <Spinner
+        android:id="@+id/sp_area"
+        android:entries="@array/area"
+        android:background="#ffffff"
+        android:layout_below="@+id/rl_house_title"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/tv_area"
+        android:layout_toEndOf="@+id/tv_area" />
+
+    <Spinner
+        android:id="@+id/sp_rent"
+        android:entries="@array/rent"
+        android:background="#ffffff"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@+id/sp_area"
+        android:layout_toRightOf="@+id/tv_rent"
+        android:layout_toEndOf="@+id/tv_rent"
+        android:layout_alignTop="@+id/tv_rent"/>
+
+    <Spinner
+        android:id="@+id/sp_number"
+        android:entries="@array/number"
+        android:background="#ffffff"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@+id/sp_rent"
+        android:layout_toRightOf="@+id/tv_number"
+        android:layout_toEndOf="@+id/tv_number"
+        android:layout_alignTop="@+id/tv_number"/>
+    <Button
+        android:id="@+id/bt_search"
+        android:background="@drawable/sousuo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/rl_house_title"/>
+    <ListView
+        android:id="@+id/lv_commendatory_house_list"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_number"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

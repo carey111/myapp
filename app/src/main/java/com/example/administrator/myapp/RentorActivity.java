@@ -1,7 +1,10 @@
 package com.example.administrator.myapp;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -31,12 +34,15 @@ public class RentorActivity extends AppCompatActivity {
     private ListView lv_fangyuan;
     private BaseAdapter adapter;
   List<RentInfo> rentInfoList = new ArrayList<RentInfo>();
-
+String phoneNum1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rentor);
         tv_bar = ((TitleBar) findViewById(R.id.tb_bar));
+        SharedPreferences sharedPreferences = this.getSharedPreferences("SP",
+                Activity.MODE_PRIVATE);
+        phoneNum1 = sharedPreferences.getString("phone", "");
         tv_bar.setLeftLayoutClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,15 +89,18 @@ public class RentorActivity extends AppCompatActivity {
     private void getRentInfo() {
 
         RequestParams params = new RequestParams(NetUtil.url+"rentinfoqueryservlet");
+        params.addQueryStringParameter("phoneNum",phoneNum1);
            x.http().get(params, new Callback.CommonCallback<String>() {
     @Override
     public void onSuccess(String result) {
+        rentInfoList.clear();
         Gson gson=new Gson();
-        System.out.println("=================="+result);
+        //System.out.println("=================="+result);
         Type type=new TypeToken<List<RentInfo>>(){}.getType();
-
-        rentInfoList= gson.fromJson(result, type);
-
+        List<RentInfo> newList=gson.fromJson(result, type);
+        //Log.e("qwe",newList.get(0).getPhotoImg()+"");
+        rentInfoList.addAll(newList) ;
+        Log.e("qwe",rentInfoList.size()+"");
 //        System.out.println("=================="+bean);
 //        rentInfoList.addAll(bean);
         adapter.notifyDataSetChanged();

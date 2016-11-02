@@ -3,6 +3,8 @@ package com.example.administrator.myapp.pojo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.sql.Timestamp;
+
 public class User implements Parcelable {
 	private Integer userId;
 	private String userName;
@@ -16,6 +18,24 @@ public class User implements Parcelable {
 	private String cardNum;
 	private String cardZheng;
 	private String cardFan;
+	private String token;
+    private Timestamp birthday;
+
+	public Timestamp getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Timestamp birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
 
 	public String getCardZheng() {
 		return cardZheng;

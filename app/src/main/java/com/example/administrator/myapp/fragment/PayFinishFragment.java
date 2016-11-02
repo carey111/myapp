@@ -101,7 +101,7 @@ public class PayFinishFragment extends BaseFragment {
                 Gson gson=new Gson();
                 Type type=new TypeToken<List<Order>>(){}.getType();
                 List <Order> newOrders= gson.fromJson(result,type);
-
+                Log.e("finsh",newOrders.size()+"");
                 orders.addAll(newOrders);
 
                     orderAdapter.notifyDataSetChanged();
@@ -126,6 +126,7 @@ public class PayFinishFragment extends BaseFragment {
         });
     }
     public void initItemView(ViewHolder viewHolder,Order order){
+
         TextView tvTime=viewHolder.getViewById(R.id.frag_allorders_item_time);
         TextView tvOrderState=viewHolder.getViewById(R.id.frag_allorders_item_trade);
         TextView tvOrderPrice=viewHolder.getViewById(R.id.frag_allorders_item_money);
@@ -143,15 +144,16 @@ public class PayFinishFragment extends BaseFragment {
             orderDetailAdapter=new CommonAdapter<OrderDetail>(getActivity(),order.getOrderDetails(),R.layout.layout_ordertetailed) {
                 @Override
                 public void convert(ViewHolder viewHolder, OrderDetail orderDetail, int position) {
-                    TextView tvType=viewHolder.getViewById(R.id.tv_type);
-                    tvType.setText(orderDetail.getRentInfo().roomType);
-                    TextView tvArea=viewHolder.getViewById(R.id.tv_area);
-                    tvArea.setText(orderDetail.getRentInfo().roomArea);
-                    TextView tvZujin=viewHolder.getViewById(R.id.tv_zujin);
-                    tvZujin.setText(orderDetail.getRentInfo().roomRent.toString());
-                    ImageView ivPhoto=viewHolder.getViewById(R.id.iv_photo);
-                    x.image().bind(ivPhoto ,NetUtil.url+orderDetail.getRentInfo().photoImg);
-
+                    if(orderDetail.getRentInfo()!=null) {
+                        TextView tvType = viewHolder.getViewById(R.id.tv_type);
+                        tvType.setText(orderDetail.getRentInfo().roomType);
+                        TextView tvArea = viewHolder.getViewById(R.id.tv_area);
+                        tvArea.setText(orderDetail.getRentInfo().roomArea);
+                        TextView tvZujin = viewHolder.getViewById(R.id.tv_zujin);
+                        tvZujin.setText(orderDetail.getRentInfo().roomRent.toString());
+                        ImageView ivPhoto = viewHolder.getViewById(R.id.iv_photo);
+                        x.image().bind(ivPhoto, NetUtil.url + orderDetail.getRentInfo().photoImg);
+                    }
                 }
             };
             noScrollListview.setAdapter(orderDetailAdapter);

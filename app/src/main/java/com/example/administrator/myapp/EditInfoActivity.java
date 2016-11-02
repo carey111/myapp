@@ -109,6 +109,7 @@ public class EditInfoActivity extends AppCompatActivity {
                 getOrderData1();
                 finish();
                 break;
+
         }
 
     }

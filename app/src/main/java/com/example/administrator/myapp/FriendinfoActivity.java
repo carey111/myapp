@@ -45,6 +45,7 @@ public class FriendinfoActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_info);
         initData();
+        ((ImageView) findViewById(R.id.img_back)).setOnClickListener(this);
         btn_moredongtai = ((Button) findViewById(R.id.btn_moredongtai));
         btn_moredongtai.setOnClickListener(this);
         btn_sendmsg = ((Button) findViewById(R.id.btn_sendmsg));
@@ -72,12 +73,12 @@ public class FriendinfoActivity extends AppCompatActivity implements View.OnClic
                 ImageView iv_photoImg=((ImageView) view.findViewById(R.id.iv_photoImg));
                 TextView tv_title=((TextView) view.findViewById(R.id.tv_title));
                 TextView tv_content=((TextView) view.findViewById(R.id.tv_content));
-                TextView tv_dianzancount=((TextView) view.findViewById(R.id.tv_dianzancount));
+//                TextView tv_dianzancount=((TextView) view.findViewById(R.id.tv_dianzancount));
                 ImageView iv_dynamicImg=((ImageView) view.findViewById(R.id.iv_dynamicImg));
                 NewestDynamicBean.Dynamic dynamic=dynamicList.get(position);
                 tv_title.setText(dynamic.dynamicTitle);
                 tv_content.setText(dynamic.dynamicContent);
-                tv_dianzancount.setText(dynamic.dynamicZan+"");
+//                tv_dianzancount.setText(dynamic.dynamicZan+"");
                 x.image().bind(iv_photoImg, NetUtils.url+"myapp/"+userImg);
                 x.image().bind(iv_dynamicImg, NetUtils.url+"myapp/"+dynamic.dynamicImg);
                 return view;
@@ -158,8 +159,11 @@ public class FriendinfoActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.btn_sendmsg:
                 if (RongIM.getInstance()!=null){
-                    RongIM.getInstance().startPrivateChat(this,"2","私人聊天");
+                    RongIM.getInstance().startPrivateChat(this,userId,userName);
                 }
+                break;
+            case R.id.img_back:
+                finish();
                 break;
         }
     }

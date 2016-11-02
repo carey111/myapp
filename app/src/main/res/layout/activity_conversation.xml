@@ -5,8 +5,35 @@
     android:layout_height="match_parent"
     android:id="@+id/activity_converstaion"
     tools:context="com.example.administrator.myapp.ConversationActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#5867f1">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/nav_back"/>
+            <TextView
+                android:id="@+id/tv_nicheng"
+                android:text="昵称"
+                android:textSize="20dp"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
     <fragment
         android:id="@+id/conversation"
+        android:layout_below="@+id/toolbar"
         android:name="io.rong.imkit.fragment.ConversationFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
